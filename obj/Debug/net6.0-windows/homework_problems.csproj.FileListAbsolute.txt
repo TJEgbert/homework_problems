@@ -1,0 +1,16 @@
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\bin\Debug\net6.0-windows\homework_problems.exe
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\bin\Debug\net6.0-windows\homework_problems.deps.json
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\bin\Debug\net6.0-windows\homework_problems.runtimeconfig.json
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\bin\Debug\net6.0-windows\homework_problems.dll
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\bin\Debug\net6.0-windows\homework_problems.pdb
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.Form1.resources
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.csproj.GenerateResource.cache
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.GeneratedMSBuildEditorConfig.editorconfig
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.AssemblyInfoInputs.cache
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.AssemblyInfo.cs
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.csproj.CoreCompileInputs.cache
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.dll
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\refint\homework_problems.dll
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.pdb
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\homework_problems.genruntimeconfig.cache
+D:\projects\number_of_homwork_problems\homework_problems\homework_problems\obj\Debug\net6.0-windows\ref\homework_problems.dll
