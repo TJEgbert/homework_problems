@@ -1,9 +1,62 @@
+using System.Diagnostics.Eventing.Reader;
 using System.Net;
 
 namespace homework_problems
 {
     public partial class Form1 : Form
     {
+        #region Private Variables
+
+        /// <summary>
+        /// Used to store the starting number for the problems
+        /// </summary>
+        int _startPoint = 0;
+
+        /// <summary>
+        /// Used to store the ending number for the problems
+        /// </summary>
+        int _endPoint = 0;
+
+        /// <summary>
+        /// Used to store the total number of problems
+        /// </summary>
+        int _totalNumber = 0;
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Checks see if the string passed in is number
+        /// </summary>
+        /// <param name="str">The string the user wants to check if its a number</param>
+        /// <returns>The entered in number if it is one if not returns -1</returns>
+        int isNumber(string str)
+        {
+            if (int.TryParse(str, out int num))
+            {
+                return num;
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// Checks to see if startPoint less than endPoint
+        /// </summary>
+        /// <param name="startPoint">The number that user wants to check is less</param>
+        /// <param name="endPoint">The number the user wants to check is greater</param>
+        /// <returns>true of startPoint is less than endPoint if not false</returns>
+        bool isSPLessThanEP(int startPoint, int endPoint)
+        {
+            if (startPoint < endPoint)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        #endregion
+
         public Form1()
         {
             InitializeComponent();
@@ -16,113 +69,119 @@ namespace homework_problems
         /// <param name="e"></param>
         private void cmd_GetProblems_Click(object sender, EventArgs e)
         {
-            // Variables that that are passed through the text fields and set up the totalNumber
-            int startPoint = int.Parse(txt_StartingPoint.Text);
-            int endPoint = int.Parse(txt_EndingPoint.Text);
-            int totalNumber;
 
-            // Checks to see if radio button Every is True
-            if (rdb_Every.Checked)
+
+            // Uses is number to check if the text from StartingPoint and EndingPoint is a number
+            _startPoint = isNumber(txt_StartingPoint.Text);
+            _endPoint = isNumber(txt_EndingPoint.Text);
+
+            // Checks to see if numbers passed in are greater than 0 if not displays errors labels
+            if (_startPoint <= 0 || _startPoint > 200)
             {
-                // Sets up variables used
-                totalNumber = endPoint;
-                var problemArray = new int[totalNumber];
-                int index = 0;
-
-                // Stores every number into the problemArray
-                for (int i = startPoint; i <= totalNumber; i++)
-                {
-                    problemArray[index] = i;
-                    index++;
-                }
-
-                // Display a message box with the total number of problems and a list of each problem
-                string toDisplay = string.Join(Environment.NewLine, problemArray);
-                MessageBox.Show("The total of problems is: " + totalNumber + "\nThe list of problems are:\n " + toDisplay, "List of Problems", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
+                lbl_errorProb1.Text = "Please enter a number between 1 and 200";
             }
-            // Checks to see if the radio button EveryOddProb is True
-            else if (rdb_EveryOddProb.Checked)
+            else
             {
-                // Sets up variables used
-                totalNumber = endPoint / 2;
-                var problemArray = new int[totalNumber];
-                int index = 0;
+                lbl_errorProb1.Text = "";
+            }
 
-                // Gets the odd number problems and save it in the problemArray
-                for (int i = startPoint; i <= endPoint; i++)
+            if (_endPoint <= 0 || _endPoint > 200)
+            {
+                lbl_errorProb2.Text = "Please enter anumber between 1 and 200";
+            }
+            else
+            {
+                lbl_errorProb2.Text = "";
+            }
+
+            // Makes sure both _startPoint and _endPoint is greater than 0
+            if (_startPoint > 0 && _endPoint > 0 && _startPoint <= 200 && _endPoint <= 200)
+            {
+                // Calls isSPLessThanEp on _startPoint and _endpoint if false displays error labels
+                if (isSPLessThanEP(_startPoint, _endPoint))
                 {
-                    if (i % 2 != 0)
+                    lbl_errorProb1.Text = "";
+                    lbl_errorProb2.Text = "";
+                    rtb_problemOutput.Text = "";
+                    _totalNumber = 0;
+
+                    // Checks to see if radio button Every is True
+                    if (rdb_Every.Checked)
                     {
-                        problemArray[index] = i;
-                        index++;
+                        // Updates error label that a radioButton been selected
+                        lbl_errorRadioButton.Text = "";
+
+                        // Loops through storing the results into rtb_problemOutPut
+                        for (int i = _startPoint; i <= _endPoint; i++)
+                        {
+                            _totalNumber++;
+                            // if its not the first problem it adds an , before the next number is printed
+                            if (_totalNumber != 1)
+                            {
+                                rtb_problemOutput.Text += ", ";
+                            }
+                            rtb_problemOutput.Text += i.ToString();
+                        }
+
+                        // Prints out the _totalNumber
+                        rtb_problemOutput.Text += "\nTotal number of Problems: " + _totalNumber;
                     }
-                }
-
-                // Display a message box with the total number of problems and a list of each problem
-                string toDisplay = string.Join(Environment.NewLine, problemArray);
-                MessageBox.Show("The total of problems is: " + totalNumber + "\nThe list of problems are:\n " + toDisplay, "List of Problems", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-            }
-            // Checks to see if the radio button EveryOtherProb is True
-            else if (rdb_EveryOtherOdd.Checked)
-            {
-                // Sets up variables used
-                totalNumber = endPoint / 3;
-                var problemArray = new int[totalNumber];
-                int index = 0;
-
-                // Gets every other odd problem and saves it into problemArray
-                for (int i = startPoint; i <= endPoint; i++)
-                {
-                    if (i % 3 == 0)
+                    // Checks to see if the radio button EveryOddProb is True
+                    else if (rdb_EveryOddProb.Checked)
                     {
-                        problemArray[index] = i;
-                        index++;
+                        // Updates error label that a radioButton been selected
+                        lbl_errorRadioButton.Text = "";
+
+                        // Loops through storing the odd number results into rtb_problemOutPut
+                        for (int i = _startPoint; i <= _endPoint; i += 2)
+                        {
+                            _totalNumber++;
+                            // if its not the first problem it adds an , before the next number is printed
+                            if (_totalNumber != 1)
+                            {
+                                rtb_problemOutput.Text += ", ";
+                            }
+                            rtb_problemOutput.Text += i.ToString();
+                        }
+
+                        // Prints out the _totalNumber
+                        rtb_problemOutput.Text += "\nTotal number of Problems: " + _totalNumber;
                     }
+                    // Checks to see if the radio button EveryOtherProb is True
+                    else if (rdb_EveryOtherOdd.Checked)
+                    {
+                        // Updates error label that a radioButton been selected
+                        lbl_errorRadioButton.Text = "";
+
+                        // Gets every other odd problem and saves it into problemArray
+                        for (int i = _startPoint; i <= _endPoint; i += 4)
+                        {
+                            _totalNumber++;
+                            if (_totalNumber != 1)
+                            {
+                                rtb_problemOutput.Text += ", ";
+                            }
+                            rtb_problemOutput.Text += i.ToString();
+
+                        }
+                        // Prints out the _totalNumber
+                        rtb_problemOutput.Text += "\nTotal number of Problems: " + _totalNumber;
+                    }
+                    else
+                    {
+                        // Error label is updated
+                        lbl_errorRadioButton.Text = "Please select a radio button"; ;
+                    }
+
                 }
-
-                // Display a message box with the total number of problems and a list of each problem
-                string toDisplay = string.Join(Environment.NewLine, problemArray);
-                MessageBox.Show("The total of problems is: " + totalNumber + "\nThe list of problems are:\n " + toDisplay, "List of Problems", MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                else
+                {
+                    // Error label is updated
+                    lbl_errorProb1.Text = "First problem must be less than Last Problem";
+                }
             }
 
         }
 
-        /// <summary>
-        /// Checks anytime something is entered into the field and see if its a number if not a message box pops up
-        /// saying please enter a number
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txt_StartingPoint_TextChanged(object sender, EventArgs e)
-        {
-            string srtPnt = txt_StartingPoint.Text;
-            int n;
-            
-            if (!int.TryParse(srtPnt, out n))
-            {
-                MessageBox.Show("Please enter a number");
-            }
-        }
-
-        /// <summary>
-        /// Checks anytime something is entered into the field and see if its a number if not a message box pops up
-        /// saying please enter a number
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txt_EndingPoint_TextChanged(object sender, EventArgs e)
-        {
-            string ndPnt = txt_EndingPoint.Text;
-            int n;
-            if (!int.TryParse(ndPnt, out n))
-            {
-                MessageBox.Show("Please enter a number");
-            }
-
-        }
     }
 }

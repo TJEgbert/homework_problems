@@ -37,29 +37,31 @@
             lbl_FirstProb = new Label();
             lbl_LastProb = new Label();
             lbl_Explanation = new Label();
+            rtb_problemOutput = new RichTextBox();
+            lbl_errorProb1 = new Label();
+            lbl_errorProb2 = new Label();
+            lbl_errorRadioButton = new Label();
             SuspendLayout();
             // 
             // txt_EndingPoint
             // 
-            txt_EndingPoint.Location = new Point(362, 99);
+            txt_EndingPoint.Location = new Point(386, 108);
             txt_EndingPoint.Name = "txt_EndingPoint";
             txt_EndingPoint.Size = new Size(100, 23);
             txt_EndingPoint.TabIndex = 0;
-            txt_EndingPoint.TextChanged += txt_EndingPoint_TextChanged;
             // 
             // txt_StartingPoint
             // 
-            txt_StartingPoint.Location = new Point(130, 99);
+            txt_StartingPoint.Location = new Point(124, 110);
             txt_StartingPoint.Name = "txt_StartingPoint";
             txt_StartingPoint.Size = new Size(100, 23);
             txt_StartingPoint.TabIndex = 1;
-            txt_StartingPoint.TextChanged += txt_StartingPoint_TextChanged;
             // 
             // rdb_Every
             // 
             rdb_Every.AutoSize = true;
             rdb_Every.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rdb_Every.Location = new Point(12, 158);
+            rdb_Every.Location = new Point(12, 168);
             rdb_Every.Name = "rdb_Every";
             rdb_Every.Size = new Size(129, 25);
             rdb_Every.TabIndex = 2;
@@ -71,7 +73,7 @@
             // 
             rdb_EveryOddProb.AutoSize = true;
             rdb_EveryOddProb.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rdb_EveryOddProb.Location = new Point(175, 158);
+            rdb_EveryOddProb.Location = new Point(174, 168);
             rdb_EveryOddProb.Name = "rdb_EveryOddProb";
             rdb_EveryOddProb.Size = new Size(165, 25);
             rdb_EveryOddProb.TabIndex = 3;
@@ -83,7 +85,7 @@
             // 
             rdb_EveryOtherOdd.AutoSize = true;
             rdb_EveryOtherOdd.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            rdb_EveryOtherOdd.Location = new Point(362, 158);
+            rdb_EveryOtherOdd.Location = new Point(362, 168);
             rdb_EveryOtherOdd.Name = "rdb_EveryOtherOdd";
             rdb_EveryOtherOdd.Size = new Size(207, 25);
             rdb_EveryOtherOdd.TabIndex = 4;
@@ -93,7 +95,7 @@
             // 
             // cmd_GetProblems
             // 
-            cmd_GetProblems.Location = new Point(217, 211);
+            cmd_GetProblems.Location = new Point(217, 212);
             cmd_GetProblems.Name = "cmd_GetProblems";
             cmd_GetProblems.Size = new Size(141, 44);
             cmd_GetProblems.TabIndex = 5;
@@ -105,7 +107,7 @@
             // 
             lbl_FirstProb.AutoSize = true;
             lbl_FirstProb.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_FirstProb.Location = new Point(12, 99);
+            lbl_FirstProb.Location = new Point(15, 110);
             lbl_FirstProb.Name = "lbl_FirstProb";
             lbl_FirstProb.Size = new Size(103, 21);
             lbl_FirstProb.TabIndex = 6;
@@ -114,10 +116,10 @@
             // lbl_LastProb
             // 
             lbl_LastProb.AutoSize = true;
-            lbl_LastProb.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lbl_LastProb.Location = new Point(269, 102);
+            lbl_LastProb.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            lbl_LastProb.Location = new Point(276, 108);
             lbl_LastProb.Name = "lbl_LastProb";
-            lbl_LastProb.Size = new Size(89, 19);
+            lbl_LastProb.Size = new Size(101, 21);
             lbl_LastProb.TabIndex = 7;
             lbl_LastProb.Text = "Last Problem";
             // 
@@ -127,15 +129,55 @@
             lbl_Explanation.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
             lbl_Explanation.Location = new Point(12, 9);
             lbl_Explanation.Name = "lbl_Explanation";
-            lbl_Explanation.Size = new Size(573, 56);
+            lbl_Explanation.Size = new Size(548, 84);
             lbl_Explanation.TabIndex = 8;
-            lbl_Explanation.Text = "Input the first problem and last problem and it will let you\nnow the number of problems and what number the problem are.";
+            lbl_Explanation.Text = "Input for first problem and last problem and i will let you now\nthe number of problems and what number the problem are.\nWorks with number 1-200";
+            // 
+            // rtb_problemOutput
+            // 
+            rtb_problemOutput.Location = new Point(15, 262);
+            rtb_problemOutput.Name = "rtb_problemOutput";
+            rtb_problemOutput.ReadOnly = true;
+            rtb_problemOutput.Size = new Size(554, 170);
+            rtb_problemOutput.TabIndex = 9;
+            rtb_problemOutput.Text = "";
+            // 
+            // lbl_errorProb1
+            // 
+            lbl_errorProb1.AutoSize = true;
+            lbl_errorProb1.ForeColor = Color.Red;
+            lbl_errorProb1.Location = new Point(15, 140);
+            lbl_errorProb1.Name = "lbl_errorProb1";
+            lbl_errorProb1.Size = new Size(0, 15);
+            lbl_errorProb1.TabIndex = 10;
+            // 
+            // lbl_errorProb2
+            // 
+            lbl_errorProb2.AutoSize = true;
+            lbl_errorProb2.ForeColor = Color.Red;
+            lbl_errorProb2.Location = new Point(276, 140);
+            lbl_errorProb2.Name = "lbl_errorProb2";
+            lbl_errorProb2.Size = new Size(0, 15);
+            lbl_errorProb2.TabIndex = 11;
+            // 
+            // lbl_errorRadioButton
+            // 
+            lbl_errorRadioButton.AutoSize = true;
+            lbl_errorRadioButton.ForeColor = Color.Red;
+            lbl_errorRadioButton.Location = new Point(377, 227);
+            lbl_errorRadioButton.Name = "lbl_errorRadioButton";
+            lbl_errorRadioButton.Size = new Size(0, 15);
+            lbl_errorRadioButton.TabIndex = 12;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(593, 275);
+            ClientSize = new Size(587, 475);
+            Controls.Add(lbl_errorRadioButton);
+            Controls.Add(lbl_errorProb2);
+            Controls.Add(lbl_errorProb1);
+            Controls.Add(rtb_problemOutput);
             Controls.Add(lbl_Explanation);
             Controls.Add(lbl_LastProb);
             Controls.Add(lbl_FirstProb);
@@ -162,5 +204,9 @@
         private Label lbl_FirstProb;
         private Label lbl_LastProb;
         private Label lbl_Explanation;
+        private RichTextBox rtb_problemOutput;
+        private Label lbl_errorProb1;
+        private Label lbl_errorProb2;
+        private Label lbl_errorRadioButton;
     }
 }
